@@ -32,35 +32,10 @@ Other columns (URLs, descriptions, images, etc.) are dropped during feature engi
 
 ## 📝 Results
 
-Add the following Python snippet to compute and display your final evaluation metrics in the README:
+
 
 ```python
-import pandas as pd
-from sklearn.metrics import mean_squared_error, mean_absolute_error
 
-# assume lr, gs_rf, gs_xg, X_test, y_test are already defined
-models = {
-    'Linear Regression': lr,
-    'Random Forest'    : gs_rf.best_estimator_,
-    'XGBoost'          : gs_xg.best_estimator_
-}
-
-# compute metrics
-rows = []
-for name, model in models.items():
-    preds = model.predict(X_test)
-    mse  = mean_squared_error(y_test, preds)
-    rmse = mse**0.5
-    mae  = mean_absolute_error(y_test, preds)
-    rows.append({
-        'Model' : name,
-        'RMSE'  : f"{rmse:,.0f}",
-        'MAE'   : f"{mae:,.0f}"
-    })
-
-# display as table
-results_df = pd.DataFrame(rows)
-print(results_df.to_markdown(index=False))
 
 | Model              | RMSE    | MAE   |
 |--------------------|---------|-------|
